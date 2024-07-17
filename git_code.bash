@@ -6,7 +6,9 @@ apt-get update && apt-get install git
 GitBash — программа-интерпретатор, запускающую Git из командной строки Windows
 
 Untracked files — то есть неотслеживаемые файлы
- 
+
+https://learngitbranching.js.org/?locale=ru_RU
+
  
 #-------------. 1 Идентификация
 
@@ -76,6 +78,9 @@ Date:   Wed Jul 17 17:51:52 2024 +0500
 Ветвление значит, что вы создаёте «параллельный» репозиторий, куда можно вносить изменения и коммитить, не вмешиваясь в основной код. Чтобы создать ветку, вводят команду git branch.
 git branch test
 
+git branch
+  master
+* test
 
 
 #-------------. 8 Смена ветки
@@ -94,19 +99,42 @@ M       git_code.bash
 	- Сначала вы переходите в ветку, в которую проведёте слияние кода.
 	- Затем пишите команду git merge с именем ветки, из которой хотите сделать слияние.
 
+git checkout master
+Switched to branch 'master'
 
-#-------------. 10
+git merge test
+Updating ec82182..681ace6
+Fast-forward
+ git_code.bash | 31 ++++++++++++++++++++++++++-----
+ script.py     |  3 ++-
+ 2 files changed, 28 insertions(+), 6 deletions(-)
 
 
 
+#-------------. 10 Привязать удаленный репозиторий
+Git — это софт для контроля версий файлов. GitHub — облачная платформа для хранения git-репозиториев.
+С URL всё понятно, но почему имя репозитория — origin, а не first-project? В данном случае имя репозитория может не совпадать с его именем на GitHub. Этим именем мы будем называть удалённый репозиторий локально при вводе команд в командную строку. Можно было бы дать имя first-project, но origin — это стандартное имя удалённого репозитория. В будущем это позволит опускать его в командах. Git будет по умолчанию искать удалённый репозиторий с именем origin.
+git remote add origin https://github.com/TimGabe12/first-project-test.git
 
-#-------------. 11
+
+#-------------. 11 Узнать текущею ветку
+ git branch --show-current
 
 
 
+#-------------. 12 загрузить код на GitHub
+git push -u origin master
 
-#-------------. 12
-
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (14/14), 2.94 KiB | 1003.00 KiB/s, done.
+Total 14 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/TimGabe12/first-project-test.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
 
 
 
